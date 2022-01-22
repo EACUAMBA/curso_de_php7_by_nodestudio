@@ -1,0 +1,6 @@
+PHP é uma linguagem interpretada (não necessita de compilação) usada no lado do servidor, com a capacidade de gerar conteudo dinámico na WEB.
+
+Cliente -> requisita página -> servidor processa com php -> responde com uma página HTML processado -> Cliente
+
+Criado por Rasnoz Lerdov em 1995.
+
