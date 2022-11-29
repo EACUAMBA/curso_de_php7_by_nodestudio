@@ -1,4 +1,4 @@
-create database if not exists curso_php7_by_nodestudio;
+create database if not exists curso_php7_by_nodestudio character set 'utf8';
 use curso_php7_by_nodestudio;
 
 create table if not exists `cliente`
