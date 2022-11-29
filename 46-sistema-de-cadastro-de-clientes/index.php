@@ -24,19 +24,46 @@ include_once './includes/header.php';
                 $sql = "SELECT * FROM cliente;";
                 $resultados = mysqli_query($connection, $sql);
 
-                while ($cliente = mysqli_fetch_array($resultados)):
+                if (mysqli_num_rows($resultados) > 0):
+                    while ($cliente = mysqli_fetch_array($resultados)):
+                        ?>
+                        <tr>
+                            <td><?php echo $cliente['nome']; ?></td>
+                            <td><?php echo $cliente['sobrenome']; ?></td>
+                            <td><?php echo $cliente['email']; ?></td>
+                            <td><?php echo $cliente['idade']; ?></td>
+                            <td><a href="./editar.php?id=<?php echo $cliente['id']; ?>" class="btn-floating orange"><i
+                                            class="material-icons">edit</i></a></td>
+                            <td><a href="#modal<?php echo $cliente['id']; ?>" class="btn-floating red modal-trigger"><i
+                                            class="material-icons">delete</i></a>
+                                <div id="modal<?php echo $cliente['id']; ?>" class="modal">
+                                    <div class="modal-content">
+                                        <h4>Aviso!</h4>
+                                        <p>Deseja excluir este cliente?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form action="./php_action/delete.php" method="post">
+                                            <input type="hidden" name="id" value="<?php echo $cliente['id']; ?>">
+                                            <button type="submit" class="btn red" name="btn-remover">Remover</button>
+                                            <a href="#!"
+                                               class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php
+                    endwhile;
+                else:
                     ?>
                     <tr>
-                        <td><?php echo $cliente['nome']; ?></td>
-                        <td><?php echo $cliente['sobrenome']; ?></td>
-                        <td><?php echo $cliente['email']; ?></td>
-                        <td><?php echo $cliente['idade']; ?></td>
-                        <td><a href="./editar.php?id=<?php echo $cliente['id']; ?>" class="btn-floating orange"><i
-                                        class="material-icons">edit</i></a></td>
-                        <td><a href="./remover.php?id=<?php echo $cliente['id']; ?>" class="btn-floating red"><i
-                                        class="material-icons">delete</i></a></td>
+                        <td colspan="4">
+                            Não existem registos!
+                        </td>
                     </tr>
-                <?php endwhile; ?>
+                <?php
+                endif;
+                ?>
                 </tbody>
             </table>
             <br>
