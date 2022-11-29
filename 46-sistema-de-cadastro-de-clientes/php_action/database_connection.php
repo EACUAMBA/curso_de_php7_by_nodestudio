@@ -13,5 +13,13 @@ if (mysqli_connect_error()):
     echo 'Erro na conexão: ' . mysqli_connect_error();
 endif;
 
+function filtrar($value)
+{
+    global $connection;
+    $value = mysqli_escape_string($connection, $value);
+    $value = htmlspecialchars($value);
+    return $value;
+}
+
 ?>
 

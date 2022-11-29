@@ -2,12 +2,13 @@
 session_start();
 require_once 'database_connection.php';
 
+
 if (isset($_POST['btn-actualizar'])):
-    $id = mysqli_escape_string($connection, $_POST['id']);
-    $nome = mysqli_escape_string($connection, $_POST['nome']);
-    $sobrenome = mysqli_escape_string($connection, $_POST['sobrenome']);
-    $email = mysqli_escape_string($connection, $_POST['email']);
-    $idade = mysqli_escape_string($connection, $_POST['idade']);
+    $id = filtrar($_POST['id']);
+    $nome = filtrar($_POST['nome']);
+    $sobrenome = filtrar($_POST['sobrenome']);
+    $email = filtrar($_POST['email']);
+    $idade = filtrar($_POST['idade']);
     $sql = "UPDATE cliente SET nome = '$nome', sobrenome = '$sobrenome', email = '$email', idade = '$idade' WHERE id = '$id'";
 
     if (mysqli_query($connection, $sql)):
